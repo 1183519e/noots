@@ -6,8 +6,11 @@ use warnings;
 use Config::Simple;
 use Net::Twitter::Lite::WithAPIv1_1;
 use File::Random qw/:all/;
+use File::Basename;
+use Cwd 'abs_path';
 
-my $config = new Config::Simple('config.ini');
+my $path = dirname(abs_path($0));
+my $config = new Config::Simple("${path}/config.ini");
 
 my $twitter = Net::Twitter::Lite::WithAPIv1_1->new(
 	access_token => $config->param('token'),
